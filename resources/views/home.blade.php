@@ -2,22 +2,23 @@
 @section('title')
     Dashboard
 @endsection
-
+ 
 @section('content')
     <div id="container">
-
+ 
     </div>
 <br>
     <div id="chart-pelanggan">
-
+ 
     </div>
 @endsection
-
+ 
 @section('js')
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+@if($this_month == 2)
 <script>
     Highcharts.chart('container', {
         title: {
@@ -41,7 +42,7 @@
         series: [{
             type: 'line',
             name: 'pelanggan',
-            data: [{!! $dataw['1'] !!}, {!! $dataw['2'] !!}, {!! $dataw['3'] !!}, {!! $dataw['4'] !!}],
+            data: [{!! $dataw[$start] !!}, {!! $dataw[$start+1] !!}, {!! $dataw[$start+2] !!}, {!! $dataw[$start+3] !!}],
             marker: {
                 enabled: false
             },
@@ -60,7 +61,53 @@
         //     }
         }]
     });
-
+</script>
+@else
+<script>
+    Highcharts.chart('container', {
+        title: {
+            text: 'Grafik Aktivasi Mingguan'
+        },
+        xAxis: {
+            categories: ['minggu 1', 'minggu 2', 'minggu 3', 'minggu 4', 'minggu 5']
+        },
+        yAxis: {
+            min: 0,
+            title : { text : 'data masuk mingguan' }
+        },
+        plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+            }
+        },
+        series: [{
+            type: 'line',
+            name: 'pelanggan',
+            data: [{!! $dataw[$start] !!}, {!! $dataw[$start+1] !!}, {!! $dataw[$start+2] !!}, {!! $dataw[$start+3] !!}, {!! $dataw[$start+4] !!}],
+            marker: {
+                enabled: false
+            },
+            // states: {
+            //     hover: {
+            //         lineWidth: 0
+            //     }
+            // },
+            // enableMouseTracking: false
+        // }, {
+        //     type: 'scatter',
+        //     name: 'Observations',
+        //     data: [1, 1.5, 2.8, 3.5, 3.9, 4.2],
+        //     marker: {
+        //         radius: 4
+        //     }
+        }]
+    });
+</script>
+@endif
+<script>
     Highcharts.chart('chart-pelanggan', {
     chart: {
         type: 'line'

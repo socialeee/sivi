@@ -19,8 +19,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 route::get('/homey', function() {
-    return view('homey');
-})->name('homey');
+    return view('superuser/superuser');
+})->name('superuser');
 
 Auth::routes();
 
