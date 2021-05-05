@@ -4,14 +4,22 @@
 @endsection
  
 @section('content')
+
     <div class="card">
-        <div class="card-body">
-            <div class="p-5">
+        
+        <div class="w3-bar w3-black">
+            <button class="btn btn-light" onclick="openCity('London')">Register</button>
+            <button class="btn btn-light" onclick="openCity('Paris')">user</button>
+        </div>
+
+        <div id="London" class="city">
+            <div class="card-body">
                 <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">ICON+</h1>
                 </div>
                 <form class="user" method="POST" action="{{ route('register') }}">
                     @csrf
+                    <input type="hidden" name="role" value="superuser">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"
                             id="name" placeholder="Masukkan nama">
@@ -47,8 +55,8 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="sales">
                             <label class="form-check-label" for="inlineRadio1">Sales</label>
-                          </div>
-                          <div class="form-check form-check-inline">
+                            </div>
+                            <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="activator">
                             <label class="form-check-label" for="inlineRadio2">Activator</label>
                         </div>
@@ -61,11 +69,45 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                         Daftar
                     </button>
-                    <hr>
-                    <div class="text-center">
-                        <a href="/login"> sudah punya akun? Login disini</a>
-                    </div>
             </div>
         </div>
+
+          
+          <div id="Paris" class="city" style="display:none">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="datatable data-table" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+          
+          
+          <script>
+              function openCity(cityName) {
+                var i;
+                var x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                document.getElementById(cityName).style.display = "block";
+                }
+          </script>
     </div>
 @endsection
+
+

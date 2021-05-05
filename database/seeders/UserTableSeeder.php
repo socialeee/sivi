@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
         Role::create(['name' => 'sales']);
         Role::create(['name' => 'activator']);
         Role::create(['name' => 'maintainer']);
+        Role::create(['name' => 'superuser']);
 
         // $sales = User::create([
         //     'name' => 'Sales 1',
@@ -34,6 +35,13 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         $activator->assignRole('activator');
+
+        $superuser = user::create([
+            'name' => 'admin',
+            'nip' => '666666666',
+            'password' => Hash::make('password'),
+        ]);
+        $superuser->assignRole('superuser');
 
         // $maintainer = User::create([
         //     'name' => 'Maintainer 1',

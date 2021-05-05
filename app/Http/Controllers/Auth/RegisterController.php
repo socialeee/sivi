@@ -36,9 +36,9 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function getMiddleware()
     {
-        $this->middleware('guest');
+        return $this->middleware;
     }
 
     /**
@@ -70,8 +70,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->assignRole($data['role']);
+        // $user->assignRole($data['role']);
 
-        return $user;
+        // return $user;
     }
 }

@@ -7,7 +7,16 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    @if  (auth()->user()->hasRole('superuser'))
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('superuser')}}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Super User</span></a>
+    </li>
+
+    @endif
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('home')}}">
