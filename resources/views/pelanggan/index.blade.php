@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
         <!-- Button trigger modal -->
-        @role('activator')
+        @role('activator|superuser')
         <div class="float-right mb-2">
             <button class="btn btn-primary btn-modal" data-href="{{ route('pelanggan.create') }}" data-container=".my-modal">Tambah Pelanggan</button>
         </div>
@@ -33,7 +33,7 @@
                         <th>Alamat</th>
                         <th>Tanggal Upload</th>
                         <th>Pelaksana</th>
-                        @role('activator|maintainer')
+                        @role('activator|maintainer|superuser')
                         <th>Aksi</th>
                         <th>files?</th>
                         @endrole
@@ -53,13 +53,13 @@
                         <td>{{ $value->alamat }}</td>
                         <td>{{ $value->updated_at->format('d-M-Y') }}</td>
                         <td>{{ $value->ptl }}</td>
-                        @role('activator|maintainer')
+                        @role('activator|maintainer|superuser')
                         <td>
-                            @role('activator|maintainer')
+                            @role('activator|maintainer|superuser')
                             <form action="{{route('pelanggan.destroy', [$value->id])}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                @role('activator')
+                                @role('activator|superuser')
                                 <button class="btn btn-primary btn-sm btn-modal" data-href="{{ route('pelanggan.edit', [$value->id]) }}" data-container=".my-modal">edit</button>
                                 <button class="btn btn-danger btn-sm btn-delete" type="submit">delete</button>
                                 @endrole

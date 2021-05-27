@@ -1,14 +1,15 @@
 <?php
-
+ 
 namespace App\Http\Controllers\Auth;
-
+ 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
+ 
 class RegisterController extends Controller
 {
     /*
@@ -21,26 +22,30 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+ 
     use RegistersUsers;
-
+ 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/login';
-
+    protected $redirectTo = RouteServiceProvider::HOME;
+ 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function getMiddleware()
+    // public function getMiddleware()
+    // {
+    //     return $this->middleware;
+    // }
+    public function __construct()
     {
-        return $this->middleware;
+        $this->middleware('guest');
     }
-
+ 
     /**
      * Get a validator for an incoming registration request.
      *
@@ -55,7 +60,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
+ 
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,9 +74,16 @@ class RegisterController extends Controller
             'nip' => $data['nip'],
             'password' => Hash::make($data['password']),
         ]);
-
-        // $user->assignRole($data['role']);
-
-        // return $user;
+ 
+        $user->assignRole($data['role']);
+ 
+        return $user;
+    }
+ 
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        // cutom dewe gawe nambahi pesan
+        return back();
     }
 }

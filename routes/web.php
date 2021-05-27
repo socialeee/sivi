@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\SuperuserController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +16,16 @@ use App\Http\Controllers\SuperuserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->name('welcome');
 
-route::get('/homey', function() {
-    return view('superuser/superuser');
-})->name('superuser');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() { 
+    Route::resource('user', UserController::class);
     Route::get('/pelanggan/{pelanggan}/download', [App\Http\Controllers\PelangganController::class, 'getDownload'])->name('pelanggan.download');
     Route::resource('pelanggan', PelangganController::class);
 });

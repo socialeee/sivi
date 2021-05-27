@@ -11,7 +11,7 @@
     @if  (auth()->user()->hasRole('superuser'))
 
     <li class="nav-item">
-        <a class="nav-link" href="{{route('superuser')}}">
+        <a class="nav-link" href="{{route('user.create')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Super User</span></a>
     </li>
