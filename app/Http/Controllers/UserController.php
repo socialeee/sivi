@@ -14,6 +14,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() {
+        $this->middleware(function ($request, $next){
+            if(!auth()->user()->hasRole('superuser')){
+                return redirect()->route('user.create');
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         return view('superuser.adding');
@@ -26,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        // $users = User::orderBy('created_at', 'desc')->get();
+        
         $users = User::orderBy('created_at', 'desc')->get()->except(auth()->user()->id);
 
         return view('superuser.superuser', compact('users'));
@@ -58,8 +68,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // $users = User::find($id);
-        // return $users;
+        // 
     }
 
     /**

@@ -69,7 +69,7 @@
             text: 'Grafik Aktivasi Mingguan'
         },
         xAxis: {
-            categories: ['minggu 1', 'minggu 2', 'minggu 3', 'minggu 4', 'minggu 5']
+            categories: ['minggu 1', 'minggu 2', 'minggu 3', 'minggu 4', 'minggu 5', 'minggu 6']
         },
         yAxis: {
             min: 0,
@@ -86,7 +86,7 @@
         series: [{
             type: 'line',
             name: 'pelanggan',
-            data: [{!! $dataw[$start] !!}, {!! $dataw[$start+1] !!}, {!! $dataw[$start+2] !!}, {!! $dataw[$start+3] !!}, {!! $dataw[$start+4] !!}],
+            data: [{!! $dataw[$start] !!}, {!! $dataw[$start+1] !!}, {!! $dataw[$start+2] !!}, {!! $dataw[$start+3] !!}, {!! $dataw[$start+4] !!}, {!! $dataw[$start+5] !!}],
             marker: {
                 enabled: false
             },

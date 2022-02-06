@@ -32,6 +32,7 @@ class HomeController extends Controller
                                             return Carbon::parse($date->created_at)->format('m');
                                         });
  
+                                        
         $pelangganmcount = [];
         $pelangganArrm = [];
         foreach($pelangganm as $key => $value) {
@@ -67,6 +68,7 @@ class HomeController extends Controller
         $start = Carbon::now()->startOfMonth()->week-1;
         $this_month = Carbon::now()->month;
  
+        // dd($pelangganw);
         $pelangganwcount = [];
         $pelangganArrw = [];
         foreach($pelangganw as $key => $value) {
@@ -82,7 +84,7 @@ class HomeController extends Controller
                 }
             }
         }else{
-            for($i = $start; $i <= $start+4; $i++){
+            for($i = $start; $i <= $start+5; $i++){
                 if(!empty($pelangganwcount[$i])){
                     $pelangganArrw[$i]['count'] = $pelangganwcount[$i];
                 } else {

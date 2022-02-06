@@ -1,15 +1,6 @@
 @extends('layouts.auth')
 
 @section('content')
-<style>
-    .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-</style>
 <div class="row justify-content-center">
 
     <div class="col-xl-5 col-lg-12 col-md-9">
@@ -20,10 +11,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="p-5">
-                            <div class="card o-hidden border-0">
-                                <img src="{{ asset('asset/img/icon.jpg') }}" width="65" height="110" class="center">
-                            </div>
-                            <br>
                             <div class="card o-hidden border-0">
                                 <h5 class="text-center font-weight-bold">Serah Terima Dokumen Aktivasi</h5>
                             </div>
